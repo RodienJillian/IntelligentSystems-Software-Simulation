@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Braking Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Braking Simulation</h1>
+        <div class="controls">
+            <label for="speed">Speed (km/h):</label>
+            <input type="number" id="speed" min="0" max="120">
+            
+            <label for="distance">Distance to Obstacle (meters):</label>
+            <input type="number" id="distance" min="0" max="100">
+            
+            <button id="start">Start Simulation</button>
+        </div>
+        <div class="result">
+            <p id="braking-intensity">Brake Intensity: </p>
+        </div>
+        <canvas id="simulationCanvas" width="800" height="200"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
