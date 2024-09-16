@@ -1,19 +1,17 @@
 document.getElementById('start').addEventListener('click', function() {
-    // Get input values
     const speed = parseFloat(document.getElementById('speed').value);
     const distance = parseFloat(document.getElementById('distance').value);
     
-    // Validate inputs
     if (isNaN(speed) || isNaN(distance) || speed < 0 || distance < 0) {
         alert('Please enter valid numbers for speed and distance.');
         return;
     }
 
-    // Determine brake intensity
     const brakingIntensity = getBrakeIntensity(speed, distance);
-    document.getElementById('braking-intensity').textContent = `Brake Intensity: ${brakingIntensity}`;
+    const brakingColor = getBrakingColor(brakingIntensity);
     
-    // Start the simulation
+    document.getElementById('braking-intensity').innerHTML = `Brake Intensity: <span style="color: ${brakingColor};">${brakingIntensity}</span>`;
+    
     startSimulation(speed, distance, brakingIntensity);
 });
 
@@ -29,27 +27,44 @@ function getBrakeIntensity(speed, distance) {
     return brakeIntensity;
 }
 
+function getBrakingColor(intensity) {
+    switch (intensity) {
+        case 'Very Strong Braking or Emergency Braking':
+            return '#FF0000'; // Red
+        case 'Strong Braking':
+            return '#FF0000'; // Red
+        case 'Moderate Braking':
+            return '#FFA500'; // Orange
+        case 'Minimal Braking':
+            return '#FFFF00'; // Yellow
+        default:
+            return '#000000'; // Default color (black)
+    }
+}
+
 function startSimulation(speed, distance, brakingIntensity) {
-    // Clear previous animation
     const canvas = document.getElementById('simulationCanvas');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const carWidth = 50;
-    const carHeight = 30;
-    const obstacleWidth = 60;
-    const obstacleHeight = 40;
 
-    // Calculate obstacle position based on distance input
-    const obstaclePosition = canvas.width - obstacleWidth - 20; // 20px gap from the edge
-    const stopPosition = obstaclePosition - (distance / 100) * canvas.width; // Scale distance to canvas width
-    
+    const carImage = new Image();
+    carImage.src = 'https://res.cloudinary.com/dakq2u8n0/image/upload/v1726449557/car_icugew.webp'; 
+    const barrierImage = new Image();
+    barrierImage.src = 'https://res.cloudinary.com/dakq2u8n0/image/upload/v1726449557/barrier_uiyqzr.png'; 
+    const carWidth = 50; 
+    const carHeight = 30; 
+    const barrierWidth = 60;
+    const barrierHeight = 40;
+
+    const barrierPosition = canvas.width - barrierWidth - 20;
+    const stopPosition = barrierPosition - (distance / 100) * canvas.width; 
+
     let carPosition = 0;
-    let carSpeed = speed / 10; // Adjust speed to control animation smoothness
+    let carSpeed = speed / 10; 
     let brakingFactor = getBrakingFactor(brakingIntensity);
 
     function getBrakingFactor(intensity) {
-        switch(intensity) {
+        switch (intensity) {
             case 'Very Strong Braking or Emergency Braking':
                 return 3;
             case 'Strong Braking':
@@ -63,30 +78,28 @@ function startSimulation(speed, distance, brakingIntensity) {
         }
     }
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    carImage.onload = function() {
+        barrierImage.onload = function() {
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the obstacle
-        ctx.fillStyle = 'red';
-        ctx.fillRect(obstaclePosition, canvas.height - obstacleHeight - 10, obstacleWidth, obstacleHeight);
+                ctx.drawImage(barrierImage, barrierPosition, canvas.height - barrierHeight - 10, barrierWidth, barrierHeight);
 
-        // Draw the car
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(carPosition, canvas.height - carHeight - 10, carWidth, carHeight);
+                ctx.drawImage(carImage, carPosition, canvas.height - carHeight - 10, carWidth, carHeight);
 
-        carPosition += carSpeed;
+                carPosition += carSpeed;
 
-        // Apply braking if close to the stopping position
-        if (carPosition >= stopPosition) {
-            carSpeed -= brakingFactor;
-            if (carSpeed < 0) carSpeed = 0;
-        }
+                if (carPosition >= stopPosition) {
+                    carSpeed -= brakingFactor;
+                    if (carSpeed < 0) carSpeed = 0;
+                }
 
-        // Stop animation when car has stopped
-        if (carPosition < canvas.width && carSpeed > 0) {
-            requestAnimationFrame(animate);
-        }
-    }
+                if (carPosition < canvas.width && carSpeed > 0) {
+                    requestAnimationFrame(animate);
+                }
+            }
 
-    animate();
+            animate();
+        };
+    };
 }
