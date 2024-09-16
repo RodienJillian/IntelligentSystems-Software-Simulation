@@ -47,6 +47,8 @@ The braking intensity is determined based on the following criteria:
   - Long Distance: Strong Braking
   - Short Distance: Very Strong Braking or Emergency Braking
 
+![Alt text](https://res.cloudinary.com/dakq2u8n0/image/upload/v1726505523/Membership_Functions_mnl2mh.png)
+
 ### Fuzzy Logic and Animation
 The simulation uses fuzzy logic to determine the braking intensity based on the vehicle's speed and the distance to the obstacle. The animation reflects these decisions by adjusting the car's speed and braking smoothly as it approaches the obstacle.
 
