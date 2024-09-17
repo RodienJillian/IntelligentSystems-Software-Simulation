@@ -32,6 +32,7 @@ function getBrakeIntensity(speed, distance) {
   return brakeIntensity;
 }
 
+
 function getBrakingColor(intensity) {
   switch (intensity) {
     case 'Very Strong Braking or Emergency Braking':
@@ -47,6 +48,7 @@ function getBrakingColor(intensity) {
   }
 }
 
+
 function startSimulation(speed, distance, brakingIntensity) {
   const canvas = document.getElementById('simulationCanvas');
   const ctx = canvas.getContext('2d');
@@ -54,14 +56,14 @@ function startSimulation(speed, distance, brakingIntensity) {
 
   const carImage = new Image();
   carImage.src =
-    'https://res.cloudinary.com/dvr0evn7t/image/upload/v1726489660/green_car-removebg-preview_1_oanahp.png';
+    'https://res.cloudinary.com/dvr0evn7t/image/upload/v1726574550/green_car-removebg-preview__1_-removebg-preview_yyesto.png';
   const barrierImage = new Image();
   barrierImage.src =
     'https://res.cloudinary.com/dvr0evn7t/image/upload/v1726489053/barriers-removebg-preview_hszgzm.png';
-  const carWidth = 200;
-  const carHeight = 160;
+  const carWidth = 250;
+  const carHeight = 200;
   const barrierWidth = 120;
-  const barrierHeight = 130;
+  const barrierHeight = 150;
 
   const barrierPosition = canvas.width - barrierWidth - 10;
   const stopPosition = barrierPosition - (distance / 100) * canvas.width - carWidth;
@@ -84,18 +86,22 @@ function startSimulation(speed, distance, brakingIntensity) {
         return 1;
     }
   }
-    
-  //roadlines
+
   function drawRoadlines(ctx, canvas) {
-    const roadLineWidth = 40;  
-    const roadLineHeight = 10; 
-    const gap = 20;         
+    const roadHeight = 100; //height of the road
+    const roadLineWidth = 30;
+    const roadLineHeight = 10;
+    const gap = 30;
+
+    ctx.fillStyle = '#A9A9A9';
+    ctx.fillRect(0, canvas.height - roadHeight, canvas.width, roadHeight); 
 
     ctx.fillStyle = 'white';
     for (let i = 0; i < canvas.width; i += roadLineWidth + gap) {
-        ctx.fillRect(i, canvas.height / 2 - roadLineHeight / 2, roadLineWidth, roadLineHeight);
+        ctx.fillRect(i, canvas.height - (roadHeight / 2) - (roadLineHeight / 2), roadLineWidth, roadLineHeight);
     }
 }
+  
 
   carImage.onload = function () {
     barrierImage.onload = function () {
@@ -112,6 +118,13 @@ function startSimulation(speed, distance, brakingIntensity) {
           barrierHeight
         );
 
+        //shadow
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; 
+        ctx.shadowBlur = 5;
+        ctx.shadowOffsetX = 0; 
+        ctx.shadowOffsetY = 6;
+
+
         ctx.drawImage(
           carImage,
           carPosition,
@@ -119,6 +132,12 @@ function startSimulation(speed, distance, brakingIntensity) {
           carWidth,
           carHeight
         );
+
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        
 
         carPosition += carSpeed;
 
