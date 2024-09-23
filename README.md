@@ -10,17 +10,6 @@ This web-based Vehicle Braking Simulation visualizes how a vehicle brakes based 
 - **Simulation**: See the vehicle's braking behavior in real-time.
 - **Braking Intensity**: The simulation adjusts braking intensity based on the vehicle's speed and distance to the obstacle.
 
-## Installation
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/yourusername/vehicle-braking-simulation.git
-   cd vehicle-braking-simulation
-   ```
-2. Open the Application
-Open the index.html file in your preferred web browser.
-
 ## Files
 index.html: The HTML file containing the structure of the web application.
 styles.css: The CSS file for styling the application.
