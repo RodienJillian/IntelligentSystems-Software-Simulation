@@ -1,3 +1,14 @@
+document.getElementById('showImageBtn').addEventListener('click', function () {
+    const imagePopup = document.getElementById('imagePopup');
+    imagePopup.style.display = 'block';
+});
+
+document.getElementById('closeImagePopup').addEventListener('click', function () {
+    const imagePopup = document.getElementById('imagePopup');
+    imagePopup.style.display = 'none';
+});
+
+
 document.getElementById('start').addEventListener('click', function () {
     const speed = parseFloat(document.getElementById('speed').value);
     const distance = parseFloat(document.getElementById('distance').value);
