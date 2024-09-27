@@ -64,17 +64,20 @@ document.getElementById('start').addEventListener('click', function () {
     const cloudImages = [
         new Image(),
         new Image(),
+        new Image(),
         new Image()
     ];
     cloudImages[0].src = 'https://res.cloudinary.com/dvr0evn7t/image/upload/v1727369337/clouds-removebg-preview_ig2z25.png';
     cloudImages[1].src = 'https://res.cloudinary.com/dvr0evn7t/image/upload/v1727369337/cloud3_yuwnel.png';
     cloudImages[2].src = 'https://res.cloudinary.com/dvr0evn7t/image/upload/v1727369337/cloud2_v7rwt4.png';
+    cloudImages[3].src = 'https://res.cloudinary.com/dvr0evn7t/image/upload/v1727369337/cloud1_wvt1du.png';
 
   
     const cloudPositions = [
-        { x: 50, y: 0, baseY: 10, width: 120, height: 60, speed: 0.4, oscillationSpeed: 0.0 },
-        { x: 300, y: 0, baseY: 10, width: 120, height: 70, speed: 0.3, oscillationSpeed: 0.04 },
-        { x: 500, y: 0, baseY: 10, width: 140, height: 80, speed: 0.2, oscillationSpeed: 0.03 }
+        { x: 30, y: 10, baseY: 10, width: 120, height: 60, speed: 0.0, oscillationSpeed: 0.01 },
+        { x: 200, y: 30, baseY: 5, width: 120, height: 70, speed: 0.0, oscillationSpeed: 0.02 },
+        { x: 400, y: 10, baseY: 10, width: 140, height: 80, speed: 0.0, oscillationSpeed: 0.01 },
+        { x: 600, y: 30, baseY: 15, width: 140, height: 80, speed: 0.0, oscillationSpeed: 0.02 }
     ];
   
     const carWidth = 200;
@@ -121,7 +124,7 @@ document.getElementById('start').addEventListener('click', function () {
             ctx.fillRect(i, canvas.height - (roadHeight / 2) - (roadLineHeight / 2), roadLineWidth, roadLineHeight);
         }
         //background
-        changeCanvasBackgroundColor('#B2C8DF');
+        changeCanvasBackgroundColor('#D1E9F6');
         
         function changeCanvasBackgroundColor(color) {
            const canvas = document.getElementById('simulationCanvas');
@@ -228,4 +231,3 @@ document.getElementById('start').addEventListener('click', function () {
   }
   
   
-
