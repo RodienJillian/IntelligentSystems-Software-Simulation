@@ -4,6 +4,8 @@
 
 This web-based Vehicle Braking Simulation visualizes how a vehicle brakes based on user inputs for speed and distance to an obstacle. The simulation includes animation to demonstrate the braking process in real-time, using fuzzy logic to determine the appropriate braking intensity.
 
+You can visit this site in the following link: [Vehicle Breaking Simulation]. (https://rodienjillian.github.io/IntelligentSystems-Software-Simulation/)
+
 ## Features
 
 - **User Input**: Enter the vehicle speed and distance to an obstacle.
@@ -11,9 +13,9 @@ This web-based Vehicle Braking Simulation visualizes how a vehicle brakes based 
 - **Braking Intensity**: The simulation adjusts braking intensity based on the vehicle's speed and distance to the obstacle.
 
 ## Files
-index.html: The HTML file containing the structure of the web application.
-styles.css: The CSS file for styling the application.
-script.js: The JavaScript file implementing the simulation logic and animation.
+- index.html: The HTML file containing the structure of the web application.
+- styles.css: The CSS file for styling the application.
+- script.js: The JavaScript file implementing the simulation logic and animation.
 
 ### Usage
 1. Enter Speed: Input the vehicle speed (in km/h) in the provided text box.
