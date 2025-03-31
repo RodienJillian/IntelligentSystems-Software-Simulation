@@ -43,6 +43,10 @@ The braking intensity is determined based on the following criteria:
 ### Fuzzy Logic and Animation
 The simulation uses fuzzy logic to determine the braking intensity based on the vehicle's speed and the distance to the obstacle. The animation reflects these decisions by adjusting the car's speed and braking smoothly as it approaches the obstacle.
 
+## Collaborators
+- [Ellorando, Rodien Jillian](https://github.com/RodienJillian)
+- [Sta. Ana, Eleina Anne](https://github.com/staanaeleina)
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
